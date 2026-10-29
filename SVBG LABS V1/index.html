@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="cyber">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SVBG Labs — Your Life, Compiled</title>
+<meta name="description" content="An offline-first personal operating system. No accounts, no cloud, no tracking — everything lives in your browser." />
+<link rel="manifest" href="manifest.json" />
+<meta name="theme-color" content="#05070c" />
+<link rel="apple-touch-icon" href="icons/icon-192.png" />
+<link rel="stylesheet" href="css/styles.css" />
+<link rel="stylesheet" href="css/extensions.css" />
+<link rel="stylesheet" href="css/svbg-advanced.css" />
+<link rel="stylesheet" href="css/svbg-mindarena.css" />
+<link rel="stylesheet" href="css/svbg-sudoku.css" />
+<link rel="stylesheet" href="css/svbg-cyberlock.css" />
+<link rel="stylesheet" href="css/svbg-about.css" />
+<link rel="stylesheet" href="css/svbg-assistant.css" />
+<link rel="stylesheet" href="css/svbg-focusmusic.css" />
+<link rel="stylesheet" href="css/svbg-timeline.css" />
+<link rel="stylesheet" href="css/svbg-timecapsule.css" />
+<link rel="stylesheet" href="css/svbg-archives.css" />
+<link rel="stylesheet" href="css/svbg-identity.css" />
+<link rel="stylesheet" href="css/svbg-v2.css" />
+<link rel="stylesheet" href="css/svbg-onboarding.css" />
+<link rel="stylesheet" href="css/svbg-identity2.css" />
+<link rel="stylesheet" href="css/svbg-easter.css" />
+</head>
+<body>
+
+  <!-- AUTH GATE: sign up / log in, shown on open until a local username is set -->
+  <div class="auth-overlay" id="auth-overlay">
+    <div class="auth-card">
+      <div class="auth-brand">
+        <div class="brand-mark">
+          <svg viewBox="0 0 40 40" class="ring-svg" aria-hidden="true">
+            <circle class="ring-track" cx="20" cy="20" r="17"></circle>
+          </svg>
+          <span class="brand-dot"></span>
+        </div>
+        <span class="brand-name">SVBG Labs</span>
+      </div>
+
+      <div class="auth-tabs" id="auth-tabs" role="tablist">
+        <button type="button" class="auth-tab is-active" data-tab="login" role="tab" aria-selected="true">Log In</button>
+        <button type="button" class="auth-tab" data-tab="signup" role="tab" aria-selected="false">Sign Up</button>
+      </div>
+
+      <form class="auth-form" id="auth-form" novalidate>
+        <div class="auth-field" id="auth-username-field">
+          <label class="auth-label" for="auth-username" id="auth-username-label">Username</label>
+          <input id="auth-username" class="auth-input" type="text" placeholder="e.g. neo" autocomplete="username" maxlength="24" autofocus />
+        </div>
+        <div class="auth-field" id="auth-email-field">
+          <label class="auth-label" for="auth-email">Email</label>
+          <input id="auth-email" class="auth-input" type="email" placeholder="you@example.com" autocomplete="email" maxlength="120" />
+        </div>
+        <div class="auth-field">
+          <label class="auth-label" for="auth-password">Password</label>
+          <input id="auth-password" class="auth-input" type="password" placeholder="At least 8 characters" autocomplete="current-password" maxlength="128" />
+          <div class="auth-strength" id="auth-strength"></div>
+        </div>
+        <div class="auth-field" id="auth-confirm-field">
+          <label class="auth-label" for="auth-confirm">Confirm password</label>
+          <input id="auth-confirm" class="auth-input" type="password" placeholder="Re-enter your password" autocomplete="new-password" maxlength="128" />
+        </div>
+        <p class="auth-error" id="auth-error"></p>
+        <button type="submit" class="auth-submit" id="auth-submit">Log In</button>
+      </form>
+
+      <p class="auth-hint">Stored only on this device — passwords are salted and hashed locally (Web Crypto), never sent anywhere.</p>
+    </div>
+  </div>
+
+  <div class="shell">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark" id="core-ring">
+          <svg viewBox="0 0 40 40" class="ring-svg" aria-hidden="true">
+            <circle class="ring-track" cx="20" cy="20" r="17"></circle>
+            <circle class="ring-progress" id="core-progress" cx="20" cy="20" r="17"></circle>
+          </svg>
+          <span class="brand-dot"></span>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">SVBG Labs</span>
+          <span class="brand-sub" id="core-score-label">core 0%</span>
+        </div>
+      </div>
+
+      <nav class="nav" id="nav" aria-label="Primary">
+        <button class="nav-item is-active" data-view="dashboard"><span class="nav-icon" data-icon="grid"></span><span>Dashboard</span></button>
+        <button class="nav-item" data-view="tasks"><span class="nav-icon" data-icon="check-square"></span><span>Tasks</span><span class="nav-badge" id="badge-tasks"></span></button>
+        <button class="nav-item" data-view="notes"><span class="nav-icon" data-icon="file-text"></span><span>Notes</span></button>
+        <button class="nav-item" data-view="journal"><span class="nav-icon" data-icon="book-open"></span><span>Journal</span></button>
+        <button class="nav-item" data-view="habits"><span class="nav-icon" data-icon="activity"></span><span>Habits</span></button>
+        <button class="nav-item" data-view="pomodoro"><span class="nav-icon" data-icon="clock"></span><span>Focus Timer</span></button>
+        <button class="nav-item" data-view="mindarena"><span class="nav-icon" data-icon="brain"></span><span>Mind Arena</span></button>
+        <button class="nav-item" data-view="mindlab"><span class="nav-icon" data-icon="mindlab"></span><span>SVBG Mind Lab</span></button>
+        <button class="nav-item" data-view="finance"><span class="nav-icon" data-icon="dollar"></span><span>Finance</span></button>
+        <button class="nav-item" data-view="bookmarks"><span class="nav-icon" data-icon="bookmark"></span><span>Bookmarks</span></button>
+        <button class="nav-item" data-view="vault"><span class="nav-icon" data-icon="shield"></span><span>Vault Tools</span></button>
+        <button class="nav-item" data-view="calculator"><span class="nav-icon" data-icon="hash"></span><span>Calculator</span></button>
+        <button class="nav-item" data-view="settings"><span class="nav-icon" data-icon="settings"></span><span>Settings</span></button>
+        <div class="nav-section-label">System</div>
+        <button class="nav-item" data-view="dna"><span class="nav-icon" data-icon="dna"></span><span>SVBG DNA</span></button>
+        <button class="nav-item" data-view="graph"><span class="nav-icon" data-icon="share"></span><span>Knowledge Graph</span></button>
+        <button class="nav-item" data-view="reflection"><span class="nav-icon" data-icon="sparkles"></span><span>Reflection</span></button>
+        <button class="nav-item" data-view="mission"><span class="nav-icon" data-icon="radar"></span><span>Mission Control</span></button>
+        <button class="nav-item" data-view="dailymission"><span class="nav-icon" data-icon="mission"></span><span>Today's Mission</span></button>
+        <button class="nav-item" data-view="coach"><span class="nav-icon" data-icon="compass"></span><span>Life Coach</span></button>
+        <button class="nav-item" data-view="timemachine"><span class="nav-icon" data-icon="history"></span><span>Time Machine</span></button>
+        <button class="nav-item" data-view="passport"><span class="nav-icon" data-icon="id-badge"></span><span>Passport</span></button>
+        <button class="nav-item" data-view="activityfeed"><span class="nav-icon" data-icon="feed"></span><span>SVBG Activity</span></button>
+        <button class="nav-item" data-view="timeline"><span class="nav-icon" data-icon="timeline"></span><span>Timeline</span></button>
+        <button class="nav-item" data-view="focusmusic"><span class="nav-icon" data-icon="music-note"></span><span>Focus Music</span></button>
+        <button class="nav-item" data-view="focusforest"><span class="nav-icon" data-icon="forest"></span><span>Focus Forest</span></button>
+        <button class="nav-item" data-view="timecapsule"><span class="nav-icon" data-icon="capsule"></span><span>Time Capsule</span></button>
+        <button class="nav-item" data-view="archives"><span class="nav-icon" data-icon="library"></span><span>SVBG Archives</span></button>
+        <button class="nav-item" data-view="identity"><span class="nav-icon" data-icon="identity"></span><span>SVBG Identity</span></button>
+        <button class="nav-item" data-view="about"><span class="nav-icon" data-icon="heart-message"></span><span>About Us</span></button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="theme-toggle" id="theme-toggle" title="Cycle theme">
+          <span class="nav-icon" data-icon="sun"></span>
+          <span id="theme-label">Cyber</span>
+        </button>
+        <button class="account-pill" id="account-pill" title="Log out">
+          <span class="nav-icon" data-icon="user"></span>
+          <span id="account-name">—</span>
+          <span class="nav-icon account-logout" data-icon="log-out"></span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- backdrop shown behind the sidebar when the mobile menu is open -->
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- MAIN -->
+    <div class="main">
+
+      <header class="topbar">
+        <button class="icon-btn mobile-nav-btn" id="mobile-nav-btn" aria-label="Open menu"><span class="nav-icon" data-icon="menu"></span></button>
+        <button class="icon-btn global-back-btn" id="global-back-btn" aria-label="Back"><span class="nav-icon" data-icon="chevron-left"></span></button>
+
+        <div class="search-wrap">
+          <span class="nav-icon" data-icon="search"></span>
+          <input id="global-search" type="text" placeholder="Search everything... ( / )" autocomplete="off" />
+          <kbd>/</kbd>
+        </div>
+
+        <div class="topbar-right">
+          <div class="clock" id="clock">--:--:--</div>
+        </div>
+      </header>
+
+      <div id="search-results" class="search-results hidden"></div>
+
+      <main class="content" id="content">
+        <!-- views injected here by app.js -->
+      </main>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toast-stack" aria-live="polite"></div>
+
+  <script src="js/app.js"></script>
+  <script src="js/extensions.js" defer></script>
+  <script src="js/svbg-profile-core.js" defer></script>
+  <script src="js/svbg-activitycore.js" defer></script>
+  <script src="js/svbg-onboarding.js" defer></script>
+  <script src="js/svbg-advanced.js" defer></script>
+  <script src="js/svbg-mindarena.js" defer></script>
+  <script src="js/svbg-sudoku.js" defer></script>
+  <script src="js/svbg-cyberlock.js" defer></script>
+  <script src="js/svbg-about.js" defer></script>
+  <script src="js/svbg-toolkit.js" defer></script>
+  <script src="js/svbg-assistant.js" defer></script>
+  <script src="js/svbg-focusmusic.js" defer></script>
+  <script src="js/svbg-timeline.js" defer></script>
+  <script src="js/svbg-timecapsule.js" defer></script>
+  <script src="js/svbg-archives.js" defer></script>
+  <script src="js/svbg-identity.js" defer></script>
+  <script src="js/svbg-mindlab.js" defer></script>
+  <script src="js/svbg-activityfeed.js" defer></script>
+  <script src="js/svbg-dailymission.js" defer></script>
+  <script src="js/svbg-focusforest.js" defer></script>
+  <script src="js/svbg-identity2.js" defer></script>
+  <script src="js/svbg-mission2.js" defer></script>
+  <script src="js/svbg-easter.js" defer></script>
+  <script src="js/svbg-pwa.js" defer></script>
+  <script src="js/svbg-navicons.js" defer></script>
+</body>
+</html>

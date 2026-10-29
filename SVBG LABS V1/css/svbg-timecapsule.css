@@ -1,0 +1,13 @@
+.tc-duration-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.tc-duration.is-active { background: var(--surface-strong); border-color: var(--accent); color: var(--accent); }
+.tc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
+.tc-card { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; }
+.tc-icon { width: 30px; height: 30px; color: var(--text-faint); }
+.tc-locked .tc-icon { color: var(--accent-2, var(--accent)); }
+.tc-ready .tc-icon { color: var(--success); animation: pulse-glow 1.6s ease-in-out infinite; }
+@keyframes pulse-glow { 0%,100% { filter: drop-shadow(0 0 0 transparent); } 50% { filter: drop-shadow(0 0 8px rgba(var(--accent-rgb),0.7)); } }
+.tc-opened .tc-icon { color: var(--text-faint); }
+.tc-status { font-family: var(--font-mono); font-size: 12.5px; font-weight: 700; color: var(--text); }
+.tc-created { font-size: 11px; color: var(--text-faint); }
+.tc-message { font-size: 13px; color: var(--text); line-height: 1.6; padding-top: 6px; border-top: 1px solid var(--border); margin-top: 4px; white-space: pre-wrap; }
+.tc-locked-label { font-size: 11px; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.06em; }

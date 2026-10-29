@@ -1,0 +1,79 @@
+/* ==========================================================================
+   SVBG IDENTITY — profile header, quick-link menu, and the five new
+   sub-views (Neural Profile, Achievements, Goals, Privacy, Data Vault).
+   ========================================================================== */
+
+/* ---- Header card ---- */
+.identity-header-card { display: flex; align-items: center; gap: 18px; margin-bottom: 20px; }
+.identity-avatar {
+  flex-shrink: 0; width: 64px; height: 64px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #05070c; display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-weight: 800; font-size: 22px;
+}
+.identity-header-info { flex: 1; min-width: 0; }
+.identity-name { font-family: var(--font-display); font-weight: 800; font-size: 18px; letter-spacing: 0.02em; }
+.identity-level-row { display: flex; align-items: center; gap: 10px; margin: 6px 0; }
+.identity-xp { font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); }
+.identity-xp-bar { height: 6px; border-radius: 999px; background: var(--surface); overflow: hidden; border: 1px solid var(--border); }
+.identity-xp-bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+.identity-xp-hint { font-size: 10.5px; color: var(--text-faint); margin-top: 4px; }
+
+/* ---- Menu card ---- */
+.identity-menu-card { padding: 6px; display: flex; flex-direction: column; }
+.identity-row {
+  display: flex; align-items: center; gap: 12px; padding: 13px 12px; border-radius: 12px;
+  background: none; border: none; text-align: left; cursor: pointer; color: var(--text);
+  border-bottom: 1px solid var(--border);
+}
+.identity-row:last-child { border-bottom: none; }
+.identity-row:hover { background: var(--surface); }
+.identity-row-emoji { font-size: 18px; width: 24px; text-align: center; flex-shrink: 0; }
+.identity-row-label { flex: 1; font-size: 13.5px; font-weight: 600; }
+.identity-row-chevron { width: 15px; height: 15px; color: var(--text-faint); transform: rotate(180deg); }
+
+/* ---- Neural Profile ---- */
+.identity-trait-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+.identity-trait-card { display: flex; align-items: center; gap: 14px; }
+.identity-trait-info { min-width: 0; }
+.identity-trait-label { font-weight: 700; font-size: 13.5px; }
+.identity-trait-value { font-family: var(--font-mono); font-size: 12px; color: var(--accent); margin: 2px 0; }
+.identity-trait-blurb { font-size: 11.5px; color: var(--text-muted); line-height: 1.4; }
+
+/* ---- Achievements gallery ---- */
+.identity-ach-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
+.identity-ach-card { opacity: 0.45; position: relative; overflow: hidden; }
+.identity-ach-card.is-unlocked { opacity: 1; background: linear-gradient(160deg, rgba(255,255,255,0.06), transparent 60%), var(--surface); }
+.identity-ach-card.is-unlocked::after { content: ''; position: absolute; top: -60%; left: -20%; width: 60%; height: 220%; background: linear-gradient(120deg, transparent, rgba(255,255,255,0.06), transparent); transform: rotate(20deg); pointer-events: none; }
+.identity-ach-card.is-unlocked.rarity-common { border-color: var(--text-faint); }
+.identity-ach-card.is-unlocked.rarity-rare { border-color: var(--accent-2); }
+.identity-ach-card.is-unlocked.rarity-epic { border-color: #d891ff; }
+.identity-ach-card.is-unlocked.rarity-legendary { border-color: var(--warning); }
+.identity-ach-title { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+.identity-ach-desc { font-size: 11.5px; color: var(--text-muted); line-height: 1.4; margin-bottom: 8px; }
+.identity-ach-status { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-faint); }
+.identity-ach-card.is-unlocked .identity-ach-status { color: var(--accent); }
+
+/* ---- Goals ---- */
+.identity-goal-list { display: flex; flex-direction: column; gap: 12px; }
+.identity-goal-card.is-complete { border-color: var(--success); }
+.identity-goal-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 4px; }
+.identity-goal-title { font-weight: 700; font-size: 14px; }
+.identity-goal-date { font-size: 11px; color: var(--text-faint); margin-bottom: 8px; }
+.identity-goal-bar { height: 8px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); overflow: hidden; margin-bottom: 8px; }
+.identity-goal-bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); transition: width 0.2s ease; }
+.identity-goal-controls { display: flex; align-items: center; gap: 10px; }
+.identity-goal-slider { flex: 1; accent-color: var(--accent); }
+.identity-goal-pct { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); width: 36px; text-align: right; }
+
+@media (max-width: 640px) {
+  .identity-header-card { flex-direction: column; text-align: center; }
+  .identity-level-row { justify-content: center; }
+}
+
+/* ---- Mind Lab scores embedded in Neural Profile ---- */
+.identity-mindlab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; }
+.identity-mindlab-stat { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 12px 8px; border-radius: 12px; background: var(--surface); border: 1px solid var(--border); text-align: center; }
+.identity-mindlab-emoji { font-size: 20px; }
+.identity-mindlab-name { font-size: 11px; color: var(--text-muted); }
+.identity-mindlab-score { font-family: var(--font-mono); font-weight: 700; color: var(--accent); }

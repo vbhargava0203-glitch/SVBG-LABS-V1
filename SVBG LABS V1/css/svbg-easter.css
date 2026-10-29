@@ -1,0 +1,6 @@
+.konami-flash { animation: konami-flash-anim 0.9s ease; }
+@keyframes konami-flash-anim {
+  0% { filter: brightness(1) saturate(1); }
+  30% { filter: brightness(1.6) saturate(1.8) hue-rotate(20deg); }
+  100% { filter: brightness(1) saturate(1); }
+}

@@ -1,0 +1,102 @@
+/* ==========================================================================
+   SVBG CYBER LOCK — styles for the setup screen, in-game HUD, and summary
+   overlay. The vault itself is drawn on canvas. Mirrors the same structural
+   patterns as svbg-chess.css / svbg-sudoku.css (fixed fullscreen stage,
+   glassmorphic HUD chips, chip-btn selectors reused from svbg-chess.css)
+   so it feels like the same app rather than a bolted-on page.
+   ========================================================================== */
+
+.cyberlock-stage {
+  position: fixed; inset: 0; z-index: 500;
+  background: #03060c;
+  overflow: hidden;
+  font-family: var(--font-sans, system-ui);
+}
+
+.cyberlock-setup {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: radial-gradient(circle at 25% 20%, rgba(89,231,217,0.09), transparent 55%),
+              radial-gradient(circle at 80% 85%, rgba(177,140,255,0.08), transparent 50%),
+              #03060c;
+  padding: 24px;
+}
+.cyberlock-setup-card {
+  max-width: 440px; width: 100%;
+  max-height: 100%; overflow-y: auto;
+  background: rgba(14,18,28,0.7);
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  border-radius: 22px; padding: 30px;
+}
+.cyberlock-setup-title { font-family: var(--font-display); font-size: 26px; font-weight: 700; color: #eaf6ff; }
+.cyberlock-setup-sub { color: rgba(234,246,255,0.55); font-size: 12.5px; margin-top: 6px; margin-bottom: 18px; }
+.cyberlock-setup-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em; color: rgba(234,246,255,0.4); font-weight: 600; margin: 16px 0 8px; }
+.cyberlock-setup-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.cyberlock-start-btn {
+  width: 100%; margin-top: 22px; padding: 14px; border-radius: 14px; border: none; cursor: pointer;
+  font-weight: 700; font-size: 15px;
+  background: linear-gradient(120deg, #59E7D9, #B18CFF);
+  color: #05070c;
+  box-shadow: 0 12px 30px rgba(89,231,217,0.25);
+}
+.cyberlock-start-btn:hover { filter: brightness(1.06); }
+
+.cyberlock-board-wrap { position: absolute; inset: 0; }
+.cyberlock-hud-top {
+  position: absolute; top: 0; left: 0; right: 0;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 22px; z-index: 3; pointer-events: none;
+}
+.cyberlock-hud-top > * { pointer-events: auto; }
+.cyberlock-hud-chip {
+  background: rgba(10,14,22,0.6); border: 1px solid rgba(255,255,255,0.09);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-radius: 12px; padding: 9px 16px; color: #eaf6ff; font-size: 13px; font-weight: 600;
+  display: flex; gap: 14px; font-family: var(--font-mono);
+}
+.cyberlock-hud-actions { display: flex; gap: 8px; }
+.cyberlock-icon-btn {
+  width: 40px; height: 40px; border-radius: 11px; border: 1px solid rgba(255,255,255,0.09);
+  background: rgba(10,14,22,0.6); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  color: #eaf6ff; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+.cyberlock-icon-btn:hover { background: rgba(255,255,255,0.12); }
+
+.cyberlock-hint {
+  position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%);
+  max-width: min(90vw, 480px); text-align: center;
+  background: rgba(10,14,22,0.6); border: 1px solid rgba(255,255,255,0.09);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-radius: 12px; padding: 10px 16px; color: rgba(234,246,255,0.7); font-size: 12px; line-height: 1.5;
+  z-index: 3; pointer-events: none;
+}
+@media (max-width: 560px) { .cyberlock-hint { font-size: 11px; padding: 8px 12px; bottom: 14px; } }
+
+.cyberlock-summary-overlay {
+  position: fixed; inset: 0; z-index: 700;
+  background: rgba(2,3,8,0.78);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+}
+.cyberlock-summary-card {
+  max-width: 420px; width: 100%;
+  background: rgba(14,18,28,0.9);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px; padding: 30px; text-align: center;
+}
+.cyberlock-summary-title { font-family: var(--font-display); font-size: 24px; font-weight: 700; color: #eaf6ff; }
+.cyberlock-summary-sub { color: rgba(234,246,255,0.6); font-size: 13px; margin-top: 6px; }
+.cyberlock-summary-stats {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  margin: 22px 0; text-align: center;
+}
+.cyberlock-summary-stats div {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px; padding: 14px 8px; display: flex; flex-direction: column; gap: 4px;
+  color: rgba(234,246,255,0.55); font-size: 11px;
+}
+.cyberlock-summary-stats span {
+  font-family: var(--font-display); font-size: 22px; font-weight: 700; color: #59E7D9;
+}

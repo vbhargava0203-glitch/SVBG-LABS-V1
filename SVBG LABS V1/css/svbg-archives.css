@@ -1,0 +1,59 @@
+/* ==========================================================================
+   SVBG ARCHIVES — book card grid + a full-screen in-app PDF reader.
+   ========================================================================== */
+
+.archives-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 18px; }
+
+.archives-book-card {
+  display: flex; gap: 18px; text-align: left; cursor: pointer;
+  padding: 18px; border-radius: 18px;
+  background: var(--surface); border: 1px solid var(--border);
+  color: var(--text); transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.archives-book-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+.archives-book-cover {
+  flex-shrink: 0; width: 108px; height: 150px; border-radius: 10px;
+  background: linear-gradient(160deg, rgba(var(--accent-rgb),0.35), rgba(177,140,255,0.35)), #0b0e16;
+  border: 1px solid rgba(255,255,255,0.12);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+  padding: 10px; text-align: center;
+}
+.archives-book-cover .nav-icon { width: 24px; height: 24px; opacity: 0.85; }
+.archives-book-cover-title { font-family: var(--font-display); font-weight: 800; font-size: 12.5px; letter-spacing: 0.06em; line-height: 1.3; }
+.archives-book-cover-sub { font-size: 9.5px; color: rgba(255,255,255,0.75); letter-spacing: 0.04em; }
+
+.archives-book-info { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.archives-book-title { font-family: var(--font-display); font-weight: 700; font-size: 15.5px; }
+.archives-book-author { font-size: 12px; color: var(--text-muted); }
+.archives-book-blurb { font-size: 12.5px; color: var(--text-muted); line-height: 1.55; }
+.archives-book-meta { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 2px; }
+.archives-book-cta {
+  margin-top: auto; padding-top: 8px; font-size: 12.5px; font-weight: 700; color: var(--accent);
+  display: flex; align-items: center; gap: 4px;
+}
+
+.archives-soon-note { margin-top: 22px; font-size: 12px; color: var(--text-faint); text-align: center; }
+
+/* ---- Full-screen PDF reader overlay ---- */
+.archives-reader-overlay {
+  position: fixed; inset: 0; z-index: 950; background: #05070a;
+  display: flex; flex-direction: column;
+}
+.archives-reader-top {
+  flex-shrink: 0; height: 56px; display: flex; align-items: center; gap: 12px;
+  padding: 0 16px; border-bottom: 1px solid var(--border); background: var(--surface-solid);
+}
+.archives-reader-close, .archives-reader-download {
+  width: 36px; height: 36px; border-radius: var(--radius-sm); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--surface); border: 1px solid var(--border); color: var(--text-muted); cursor: pointer;
+}
+.archives-reader-close .nav-icon, .archives-reader-download .nav-icon { width: 16px; height: 16px; }
+.archives-reader-title { flex: 1; min-width: 0; font-family: var(--font-display); font-weight: 700; font-size: 14px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.archives-reader-frame { flex: 1; width: 100%; border: none; background: #fff; }
+
+@media (max-width: 640px) {
+  .archives-book-card { flex-direction: column; }
+  .archives-book-cover { width: 100%; height: 120px; }
+}

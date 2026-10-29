@@ -1,0 +1,87 @@
+/* ==========================================================================
+   SVBG ABOUT US — page styling + Founder's Message modal.
+   Reuses .modal-backdrop from styles.css for the backdrop itself.
+   ========================================================================== */
+
+.about-hero {
+  position: relative;
+  border-radius: 20px;
+  padding: 30px;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(89,231,217,0.10), rgba(177,140,255,0.10) 55%, transparent);
+  border: 1px solid var(--border);
+  margin-bottom: 22px;
+}
+.about-hero-title { font-family: var(--font-display); font-size: 27px; font-weight: 700; letter-spacing: 0.01em; }
+.about-hero-tagline { font-size: 14px; font-style: italic; color: var(--accent); margin-top: 8px; }
+.about-hero-body { font-size: 13.5px; color: var(--text-muted); line-height: 1.65; margin-top: 14px; max-width: 68ch; }
+
+.about-section-label { font-size: 13px; font-weight: 700; margin: 26px 0 12px; }
+
+.about-principles-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+@media (max-width: 900px) { .about-principles-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .about-principles-grid { grid-template-columns: 1fr; } }
+.about-principle-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 18px; }
+.about-principle-icon {
+  width: 42px; height: 42px; border-radius: 12px; margin-bottom: 12px;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, rgba(89,231,217,0.15), rgba(177,140,255,0.15));
+  color: var(--accent);
+}
+.about-principle-title { font-weight: 700; font-size: 14.5px; margin-bottom: 6px; }
+.about-principle-desc { font-size: 12.5px; color: var(--text-muted); line-height: 1.55; }
+
+.about-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 22px; }
+@media (max-width: 760px) { .about-two-col { grid-template-columns: 1fr; } }
+.about-text-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 20px; }
+.about-text-card p { font-size: 13px; color: var(--text-muted); line-height: 1.6; margin: 0 0 10px; }
+.about-text-card p:last-child { margin-bottom: 0; }
+
+.about-chip-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.about-chip {
+  font-size: 12px; padding: 7px 14px; border-radius: 999px;
+  background: rgba(89,231,217,0.1); border: 1px solid rgba(89,231,217,0.25); color: var(--accent);
+}
+.about-chip-alt { background: rgba(177,140,255,0.1); border-color: rgba(177,140,255,0.25); color: var(--accent-2); }
+.about-philosophy-note { font-size: 12.5px; color: var(--text-faint); line-height: 1.6; margin-top: 14px; max-width: 70ch; }
+
+.about-closing-card {
+  margin-top: 26px; background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 26px;
+}
+.about-closing-card p { font-size: 13.5px; color: var(--text-muted); line-height: 1.65; margin: 0 0 12px; }
+.about-closing-lines { font-style: italic; color: var(--text); }
+.about-tagline-strong { font-family: var(--font-display); font-weight: 700; color: var(--accent); font-size: 15px; margin-top: 4px !important; }
+
+.about-copyright { font-size: 11.5px; color: var(--text-faint); text-align: center; margin-top: 22px; line-height: 1.6; }
+
+.about-founder-btn {
+  display: flex; align-items: center; gap: 10px; justify-content: center;
+  width: 100%; margin-top: 22px; padding: 15px; border-radius: 14px; border: none; cursor: pointer;
+  font-weight: 700; font-size: 14.5px;
+  background: linear-gradient(120deg, #F472B6, #B18CFF);
+  color: #ffffff;
+  box-shadow: 0 12px 30px rgba(244,114,182,0.25);
+  transition: transform 0.15s ease;
+}
+.about-founder-btn:hover { transform: translateY(-2px); }
+
+/* ---- Founder's Message modal ---- */
+.about-founder-backdrop { z-index: 200; }
+.about-founder-modal {
+  position: relative;
+  background: var(--surface-solid);
+  border: 1px solid var(--border-strong);
+  border-radius: 20px;
+  padding: 34px;
+  width: 100%; max-width: 620px; max-height: 82vh;
+  overflow-y: auto;
+  box-shadow: 0 30px 70px rgba(0,0,0,0.45);
+}
+.about-founder-modal-title { font-family: var(--font-display); font-size: 21px; font-weight: 700; margin-bottom: 18px; }
+.about-founder-modal-body { font-size: 13.5px; line-height: 1.75; color: var(--text-muted); white-space: normal; }
+.about-founder-close {
+  position: absolute; top: 18px; right: 18px;
+  width: 34px; height: 34px; border-radius: 10px; border: 1px solid var(--border);
+  background: var(--surface); color: var(--text); cursor: pointer; font-size: 14px;
+}
+.about-founder-close:hover { background: var(--surface-strong); }
